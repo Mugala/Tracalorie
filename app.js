@@ -1,8 +1,6 @@
 // Storage Controller
 
 
-
-
 //Item Controller
 const ItemCtrl = (function(){
   //Item Constructor
@@ -39,7 +37,8 @@ const ItemCtrl = (function(){
 //IU Controller
 const UICtrl = (function(){
   const UISelectors ={
-    itemList: '#item-list'
+    itemList: '#item-list',
+    addBtn: '.add-btn'
   }
   
   //Public methods 
@@ -59,19 +58,33 @@ const UICtrl = (function(){
       // Insert list items
       document.querySelector(UISelectors.itemList).innerHTML = html;
 
+    },
+    getSelectors: function(){
+      return UISelectors;
     }
   }
 
 })();
 
 
-
 //App Controller
 const App = (function(ItemCtrl,UICtrl){
   //Load event Listeners
   const loadEventListeners = function(){
+    // Get UI Selectors
+    const UISelectors = UICtrl.getSelectors();
 
+    //Add item event
+    document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
   }
+
+  //Add item submit
+  const itemAddSubmit = function(e){
+    console.log('Add');
+
+    e.preventDefault();
+  }
+  
 
   // Pulic methods
   return{
@@ -81,9 +94,9 @@ const App = (function(ItemCtrl,UICtrl){
 
       // Populate list with items
       UICtrl.populateItemList(items);
-    },
-    getSelectors: function(){
-      return UISelectors;
+
+      //Load event listener
+      loadEventListeners();
     }
   }
   
