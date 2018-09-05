@@ -35,6 +35,17 @@ const ItemCtrl = (function(){
       }else{
         ID = 0;
       }
+
+      //Calories to number
+      calories = parseInt(calories);
+
+      //Create new item
+      newItem = new Item(ID, name, calories);
+
+      //Add to items array
+      data.items.push(newItem);
+
+      return newItem; 
     },
     logData: function(){
       return data;
