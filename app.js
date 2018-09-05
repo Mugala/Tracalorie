@@ -68,6 +68,10 @@ const UICtrl = (function(){
 
 //App Controller
 const App = (function(ItemCtrl,UICtrl){
+  //Load event Listeners
+  const loadEventListeners = function(){
+
+  }
 
   // Pulic methods
   return{
@@ -77,6 +81,9 @@ const App = (function(ItemCtrl,UICtrl){
 
       // Populate list with items
       UICtrl.populateItemList(items);
+    },
+    getSelectors: function(){
+      return UISelectors;
     }
   }
   
