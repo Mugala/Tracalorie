@@ -18,6 +18,8 @@ const ItemCtrl = (function(){
     currentItem: null,
     totalCalories: 0
   }
+
+  //Public methods
   return {
     logData: function(){
       return data;
@@ -28,8 +30,29 @@ const ItemCtrl = (function(){
 //IU Controller
 const UICtrl = (function(){
   
+  //Public methods 
+  // Pulic methods
+  return{
+    init: function(){
+      console.log('Initilizing the app...');
+    }
+  }
+
 })();
+
 //App Controller
 const App = (function(ItemCtrl,UICtrl){
+
+
+  // Pulic methods
+  return{
+    init: function(){
+      console.log('Initilizing the app...');
+    }
+  }
   
 })(ItemCtrl,UICtrl);
+
+
+//Initializing App
+App.init();
