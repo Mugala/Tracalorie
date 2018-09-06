@@ -47,6 +47,21 @@ const ItemCtrl = (function(){
 
       return newItem; 
     },
+    getTotalCalories: function(){
+      let total = 0;
+
+      //loop through items then add calories 
+
+      data.items.forEach(function(item){
+        total += item.calories;
+      }); 
+
+      //set total cal in data structure
+      data.totalCalories = total;
+
+      //Return total
+      return data.totalCalories;
+    },
     logData: function(){
       return data;
     }
@@ -144,6 +159,9 @@ const App = (function(ItemCtrl,UICtrl){
       const newItem = ItemCtrl.addItem(input.name, input.calories);
       // Add item to UI list
       UICtrl.addListItem(newItem);
+
+      //Get total calories
+      const totalCalories = ItemCtrl.getTotalCalories();
 
       //Clear fields
       UICtrl.clearInput();
