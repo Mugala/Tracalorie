@@ -115,6 +115,7 @@ IU Controller
 const UICtrl = (function(){
   const UISelectors ={
     itemList: '#item-list',
+    listItem: '#item-list li',
     addBtn: '.add-btn',
     updateBtn: '.update-btn',
     deleteBtn: '.delete-btn',
@@ -166,6 +167,23 @@ const UICtrl = (function(){
       </a>`;
       // insert item
       document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li);
+    },
+    updateListItem: function(item){
+      let listItems = document.querySelectorAll(UISelectors.listItem);
+
+      //Turn node list to array
+      listItems = Array.from(listItems);
+
+      listItems.forEach(function(listItem){
+        const itemID = listItem.getAttribute('id');
+
+        if(itemID === `item-${item.id}`){
+          document.querySelector(`#${itemID}`).innerHTML = `<strong>${item.name}:</strong> <em>${item.calories} Calories</em>
+          <a href="#" class="secondary-content">
+            <i class="edit-item fa fa-pencil"></i>
+          </a>`;
+        }
+      });
     },
     clearInput: function(){
       document.querySelector(UISelectors.itemNameInput).value = '';
@@ -295,6 +313,9 @@ const App = (function(ItemCtrl,UICtrl){
 
     //update item
     const updatedItem = ItemCtrl.updateItem(input.name, input.calories);
+
+    //update ui
+    UICtrl.updateListItem(updatedItem);
 
     e.preventDefault();
   }
