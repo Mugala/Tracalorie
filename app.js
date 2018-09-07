@@ -53,6 +53,16 @@ const ItemCtrl = (function(){
 
       return newItem; 
     },
+    getItemById: function(id){
+      let found =null;
+      //loop through the items
+      data.items.forEach(function(item){
+        if(item.id === id){
+          found = item;
+        }
+      });
+      return found;
+    },
     getTotalCalories: function(){
       let total = 0;
 
@@ -221,7 +231,9 @@ const App = (function(ItemCtrl,UICtrl){
 
       const id = parseInt(listIdArr[1]);
 
-      console.log(id);
+      // Get item
+      const itemToEdit = ItemCtrl.getItemById(id);
+      console.log(itemToEdit);
        
     }
 
