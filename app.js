@@ -91,6 +91,9 @@ const ItemCtrl = (function() {
       //Remove item
       data.item.splice(index,1);
     },
+    clearAllItems: function(){
+      data.items  = [];
+    },
     setCurrentItem: function(item) {
       data.currentItem = item;
     },
@@ -132,6 +135,7 @@ const UICtrl = (function() {
     updateBtn: '.update-btn',
     deleteBtn: '.delete-btn',
     backBtn: '.back-btn',
+    clearBtn: '.clear-btn',
     itemNameInput: '#item-name',
     itemCaloriesInput: '#item-calories',
     totalCalories: '.total-calories'
@@ -269,7 +273,9 @@ const App = (function(ItemCtrl, UICtrl) {
 
     // delete item event
     document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit);
-       ;
+       
+    // Clear items event
+    document.querySelector(UISelectors.clearBtn).addEventListener('click', clearAllItemsClick);
 
 
     // Back button event
@@ -373,6 +379,12 @@ const App = (function(ItemCtrl, UICtrl) {
      UICtrl.clearEditState(); 
     
     e.preventDefault();
+  }
+
+  //Clear items event
+  const clearAllItemsClick = function(){
+    //Delete all iitems from data structure
+    ItemCtrl.clearAllItems();
   }
 
 
