@@ -79,6 +79,18 @@ const ItemCtrl = (function() {
 
       return found;
     },
+    deleteItem: function(id){
+      //Get ids
+      const ids = data.items.map(function(item){
+        return item.id;
+      });
+
+      //Get index
+      const index = ids.indexOf(id);
+
+      //Remove item
+      data.item.splice(index,1);
+    },
     setCurrentItem: function(item) {
       data.currentItem = item;
     },
@@ -338,7 +350,7 @@ const App = (function(ItemCtrl, UICtrl) {
 
   //Delete button event
   const itemDeleteSubmit =function(e){
-    //Get current item
+    //Get current item 
     const currentItem =ItemCtrl.getCurrentItem();
 
     //Delete from data structure
